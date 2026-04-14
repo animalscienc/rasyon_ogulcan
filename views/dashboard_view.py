@@ -1,7 +1,7 @@
 # Dashboard View for Zootekni Pro
 # Main dashboard with sidebar navigation and content area
 
-from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
+from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
                              QPushButton, QFrame, QStackedWidget, QScrollArea,
                              QTableWidget, QTableWidgetItem, QHeaderView, QSplitter,
                              QComboBox, QSpinBox, QDoubleSpinBox, QGroupBox,
