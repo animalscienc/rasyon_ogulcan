@@ -1,334 +1,193 @@
-# Dashboard View for Zootekni Pro
-# Main dashboard with sidebar navigation
+# Dashboard View for Zootekni Pro - Simple Working Version
 
-from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
-                             QLabel, QPushButton, QFrame, QStackedWidget, QScrollArea,
-                             QTableWidget, QHeaderView, QComboBox, QDoubleSpinBox, 
-                             QGroupBox, QFormLayout, QRadioButton, QButtonGroup,
-                             QLineEdit, QTextEdit)
-from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame
 from PyQt5.QtCore import Qt
-import os
-import sys
+import os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 class DashboardView(QMainWindow):
-    """Main dashboard with sidebar navigation."""
-    
     def __init__(self):
-        """Initialize dashboard view."""
         super().__init__()
         self.controller = None
-        self.menu_buttons = {}
-        self.init_ui()
+        self.initUI()
         
-    def init_ui(self):
-        """Initialize UI components."""
-        self.setWindowTitle("Zootekni Pro - Intelligent Rationing System")
+    def initUI(self):
+        self.setWindowTitle("Zootekni Pro - Intelligent Rationing")
         self.setGeometry(100, 100, 1400, 900)
         
-        # Main container
-        main_widget = QWidget()
-        self.setCentralWidget(main_widget)
-        
-        # Horizontal layout
+        # Main widget
+        main = QWidget()
+        self.setCentralWidget(main)
         layout = QHBoxLayout()
         layout.setSpacing(0)
         layout.setContentsMargins(0, 0, 0, 0)
         
-        # Left sidebar (250px)
-        sidebar = self.create_sidebar()
-        sidebar.setFixedWidth(250)
-        
-        # Right content area (takes remaining space)
-        content = self.create_content()
-        
-        layout.addWidget(sidebar)
-        layout.addWidget(content, 1)
-        
-        main_widget.setLayout(layout)
-        
-        # Apply stylesheet
-        self.apply_styles()
-        
-    def create_sidebar(self) -> QFrame:
-        """Create sidebar."""
+        # Left sidebar
         sidebar = QFrame()
-        sidebar.setStyleSheet("""
-            QFrame {
-                background-color: #1a1a2e;
-                border-right: 2px solid #2a2a4e;
-            }
-        """)
+        sidebar.setFixedWidth(250)
+        sidebar.setStyleSheet("background-color: #1a1a2e;")
         
-        layout = QVBoxLayout()
-        layout.setSpacing(0)
-        layout.setContentsMargins(0, 0, 0, 0)
+        sLayout = QVBoxLayout()
+        sLayout.setSpacing(0)
+        sLayout.setContentsMargins(0, 0, 0, 0)
         
-        # Logo area
-        logo = QFrame()
-        logo.setFixedHeight(100)
-        logo.setStyleSheet("background-color: #0f0f1a;")
-        logo_layout = QVBoxLayout()
+        # Logo
+        logo = QLabel("Zootekni Pro")
+        logo.setStyleSheet("font-size: 24px; font-weight: bold; color: #4a90d9; padding: 20px; background-color: #0f0f1a;")
         
-        title = QLabel("Zootekni Pro")
-        title.setStyleSheet("font-size: 24px; font-weight: bold; color: #4a90d9; padding: 20px;")
+        # Menu buttons - each button created individually with its own click handler
+        self.btn1 = QPushButton("🏠  Anasayfa")
+        self.btn1.setFixedHeight(45)
+        self.btn1.setStyleSheet("QPushButton {background-color: transparent; border: none; color: #a0a0b0; font-size: 14px; text-align: left; padding-left: 20px;} QPushButton:hover {background-color: #2a2a4e; color: white;}")
+        self.btn1.clicked.connect(self.btn1_clicked)
         
-        subtitle = QLabel("Intelligent Rationing")
-        subtitle.setStyleSheet("font-size: 12px; color: #606070; padding-left: 20px;")
+        self.btn2 = QPushButton("🌾  Yem Kütüphanesi")
+        self.btn2.setFixedHeight(45)
+        self.btn2.setStyleSheet("QPushButton {background-color: transparent; border: none; color: #a0a0b0; font-size: 14px; text-align: left; padding-left: 20px;} QPushButton:hover {background-color: #2a2a4e; color: white;}")
+        self.btn2.clicked.connect(self.btn2_clicked)
         
-        logo_layout.addWidget(title)
-        logo_layout.addWidget(subtitle)
-        logo.setLayout(logo_layout)
+        self.btn3 = QPushButton("🐄  Hayvan Grupları")
+        self.btn3.setFixedHeight(45)
+        self.btn3.setStyleSheet("QPushButton {background-color: transparent; border: none; color: #a0a0b0; font-size: 14px; text-align: left; padding-left: 20px;} QPushButton:hover {background-color: #2a2a4e; color: white;}")
+        self.btn3.clicked.connect(self.btn3_clicked)
         
-        # Menu buttons
-        menu_items = [
-            ("🏠", "Anasayfa"),
-            ("🌾", "Yem Kütüphanesi"),
-            ("🐄", "Hayvan Grupları"),
-            ("📋", "Rasyon Oluştur"),
-            ("⚡", "Optimizasyon"),
-            ("💰", "Ekonomik Analiz"),
-            ("📄", "Raporlar"),
-            ("⚙️", "Ayarlar"),
-        ]
+        self.btn4 = QPushButton("📋  Rasyon Oluştur")
+        self.btn4.setFixedHeight(45)
+        self.btn4.setStyleSheet("QPushButton {background-color: transparent; border: none; color: #a0a0b0; font-size: 14px; text-align: left; padding-left: 20px;} QPushButton:hover {background-color: #2a2a4e; color: white;}")
+        self.btn4.clicked.connect(self.btn4_clicked)
         
-        menu_frame = QFrame()
-        menu_frame.setStyleSheet("background-color: transparent;")
-        menu_layout = QVBoxLayout()
-        menu_layout.setSpacing(2)
+        self.btn5 = QPushButton("⚡  Optimizasyon")
+        self.btn5.setFixedHeight(45)
+        self.btn5.setStyleSheet("QPushButton {background-color: transparent; border: none; color: #a0a0b0; font-size: 14px; text-align: left; padding-left: 20px;} QPushButton:hover {background-color: #2a2a4e; color: white;}")
+        self.btn5.clicked.connect(self.btn5_clicked)
         
-        for icon, text in menu_items:
-            btn = QPushButton(f"{icon}  {text}")
-            btn.setFixedHeight(45)
-            btn.setCursor(Qt.PointingHandCursor)
-            # Connect click event
-            btn.clicked.connect(lambda checked, t=text: self.on_menu_clicked(t))
-            btn.setStyleSheet("""
-                QPushButton {
-                    background-color: transparent;
-                    border: none;
-                    color: #a0a0b0;
-                    font-size: 14px;
-                    text-align: left;
-                    padding-left: 20px;
-                    border-radius: 5px;
-                }
-                QPushButton:hover {
-                    background-color: #2a2a4e;
-                    color: #ffffff;
-                }
-                QPushButton:pressed {
-                    background-color: #3a3a5e;
-                }
-            """)
-            menu_layout.addWidget(btn)
-            self.menu_buttons[text] = btn
-            
-        menu_layout.addStretch()
-        menu_frame.setLayout(menu_layout)
+        self.btn6 = QPushButton("💰  Ekonomik Analiz")
+        self.btn6.setFixedHeight(45)
+        self.btn6.setStyleSheet("QPushButton {background-color: transparent; border: none; color: #a0a0b0; font-size: 14px; text-align: left; padding-left: 20px;} QPushButton:hover {background-color: #2a2a4e; color: white;}")
+        self.btn6.clicked.connect(self.btn6_clicked)
+        
+        self.btn7 = QPushButton("📄  Raporlar")
+        self.btn7.setFixedHeight(45)
+        self.btn7.setStyleSheet("QPushButton {background-color: transparent; border: none; color: #a0a0b0; font-size: 14px; text-align: left; padding-left: 20px;} QPushButton:hover {background-color: #2a2a4e; color: white;}")
+        self.btn7.clicked.connect(self.btn7_clicked)
+        
+        self.btn8 = QPushButton("⚙️  Ayarlar")
+        self.btn8.setFixedHeight(45)
+        self.btn8.setStyleSheet("QPushButton {background-color: transparent; border: none; color: #a0a0b0; font-size: 14px; text-align: left; padding-left: 20px;} QPushButton:hover {background-color: #2a2a4e; color: white;}")
+        self.btn8.clicked.connect(self.btn8_clicked)
         
         # User info
-        user_section = QFrame()
-        user_section.setFixedHeight(60)
-        user_section.setStyleSheet("background-color: #0f0f1a; border-top: 1px solid #2a2a4e;")
-        user_layout = QHBoxLayout()
-        
         self.user_label = QLabel("Kullanıcı: Admin")
-        self.user_label.setStyleSheet("color: #808090; font-size: 12px; padding: 10px;")
+        self.user_label.setStyleSheet("color: #808090; font-size: 12px; padding: 10px; background-color: #0f0f1a;")
         
-        logout_btn = QPushButton("🚪 Çıkış")
-        logout_btn.setFixedWidth(60)
-        logout_btn.setStyleSheet("""
-            QPushButton {
-                background-color: #2a2a4e;
-                border: none;
-                border-radius: 5px;
-                color: #a0a0b0;
-            }
-            QPushButton:hover {
-                background-color: #3a3a5e;
-                color: #ffffff;
-            }
-        """)
+        sLayout.addWidget(logo)
+        sLayout.addWidget(self.btn1)
+        sLayout.addWidget(self.btn2)
+        sLayout.addWidget(self.btn3)
+        sLayout.addWidget(self.btn4)
+        sLayout.addWidget(self.btn5)
+        sLayout.addWidget(self.btn6)
+        sLayout.addWidget(self.btn7)
+        sLayout.addWidget(self.btn8)
+        sLayout.addStretch()
+        sLayout.addWidget(self.user_label)
+        sidebar.setLayout(sLayout)
         
-        user_layout.addWidget(self.user_label)
-        user_layout.addStretch()
-        user_layout.addWidget(logout_btn)
-        user_section.setLayout(user_layout)
-        
-        # Add all to sidebar
-        layout.addWidget(logo)
-        layout.addWidget(menu_frame, 1)
-        layout.addWidget(user_section)
-        
-        sidebar.setLayout(layout)
-        return sidebar
-        
-    def create_content(self) -> QFrame:
-        """Create content area."""
+        # Right content area
         content = QFrame()
         content.setStyleSheet("background-color: #0a0a14;")
         
-        layout = QVBoxLayout()
-        layout.setContentsMargins(20, 20, 20, 20)
-        layout.setSpacing(15)
+        cLayout = QVBoxLayout()
+        cLayout.setContentsMargins(20, 20, 20, 20)
+        cLayout.setSpacing(15)
         
         # Header
         header = QLabel("Hoş Geldiniz - Zootekni Pro")
-        header.setStyleSheet("""
-            font-size: 28px;
-            font-weight: bold;
-            color: #ffffff;
-            padding-bottom: 10px;
-        """)
+        header.setStyleSheet("font-size: 28px; font-weight: bold; color: white;")
         
-        # Info cards row
-        cards_layout = QHBoxLayout()
-        cards_layout.setSpacing(15)
+        # Info cards
+        cards = QHBoxLayout()
         
-        cards_data = [
-            ("📊", "Toplam Yem", "310", "Kalem"),
-            ("🐄", "Hayvan Grubu", "12", "Grup"),
-            ("📋", "Kayıtlı Rasyon", "45", "Adet"),
-            ("💰", "Son Maliyet", "₺12.50", "/kg KM"),
-        ]
+        c1 = self.make_card("📊", "Toplam Yem", "310", "Kalem")
+        c2 = self.make_card("🐄", "Hayvan Grubu", "12", "Grup")
+        c3 = self.make_card("📋", "Kayıtlı Rasyon", "45", "Adet")
+        c4 = self.make_card("💰", "Son Maliyet", "₺12.50", "/kg KM")
         
-        for icon, title, value, unit in cards_data:
-            card = self.create_card(icon, title, value, unit)
-            cards_layout.addWidget(card)
-            
-        # Quick actions
-        actions_label = QLabel("Hızlı İşlemler")
-        actions_label.setStyleSheet("font-size: 18px; font-weight: bold; color: #c0c0d0;")
+        cards.addWidget(c1)
+        cards.addWidget(c2)
+        cards.addWidget(c3)
+        cards.addWidget(c4)
         
-        actions_layout = QHBoxLayout()
-        actions_layout.setSpacing(10)
+        cLayout.addWidget(header)
+        cLayout.addLayout(cards)
+        cLayout.addStretch()
         
-        actions = [
-            ("➕ Yeni Rasyon", "#4a90d9"),
-            ("⚡ Optimize Et", "#2ecc71"),
-            ("📄 Rapor Al", "#9b59b6"),
-        ]
+        content.setLayout(cLayout)
         
-        for text, color in actions:
-            btn = QPushButton(text)
-            btn.setFixedHeight(40)
-            btn.setCursor(Qt.PointingHandCursor)
-            btn.setStyleSheet(f"""
-                QPushButton {{
-                    background-color: {color};
-                    border: none;
-                    border-radius: 8px;
-                    color: white;
-                    font-size: 14px;
-                    font-weight: bold;
-                    padding: 0 20px;
-                }}
-                QPushButton:hover {{
-                    opacity: 0.8;
-                }}
-            """)
-            actions_layout.addWidget(btn)
-            
-        # Recent rations
-        recent_label = QLabel("Son Rasyonlar")
-        recent_label.setStyleSheet("font-size: 18px; font-weight: bold; color: #c0c0d0;")
+        layout.addWidget(sidebar)
+        layout.addWidget(content, 1)
+        main.setLayout(layout)
         
-        table = QTableWidget(5, 6)
-        table.setStyleSheet("""
-            QTableWidget {
-                background-color: #12121e;
-                border: 1px solid #2a2a4e;
-                border-radius: 8px;
-                color: #c0c0d0;
-            }
-            QTableWidget::item {
-                padding: 10px;
-                border-bottom: 1px solid #2a2a4e;
-            }
-            QHeaderView::section {
-                background-color: #1a1a2e;
-                color: #a0a0b0;
-                padding: 10px;
-                font-weight: bold;
-            }
-        """)
-        table.setHorizontalHeaderLabels(["Rasyon Adı", "Grup", "KM (kg)", "HP (%)", "Maliyet (₺)", "Tarih"])
-        table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        
-        layout.addWidget(header)
-        layout.addLayout(cards_layout)
-        layout.addWidget(actions_label)
-        layout.addLayout(actions_layout)
-        layout.addWidget(recent_label)
-        layout.addWidget(table)
-        layout.addStretch()
-        
-        content.setLayout(layout)
-        return content
-        
-    def create_card(self, icon: str, title: str, value: str, unit: str) -> QFrame:
-        """Create info card."""
+    def make_card(self, icon, title, value, unit):
         card = QFrame()
-        card.setStyleSheet("""
-            QFrame {
-                background-color: #12121e;
-                border: 1px solid #2a2a4e;
-                border-radius: 12px;
-            }
-        """)
+        card.setStyleSheet("background-color: #12121e; border: 1px solid #2a2a4e; border-radius: 12px;")
         
-        layout = QVBoxLayout()
-        layout.setContentsMargins(15, 15, 15, 15)
-        layout.setSpacing(5)
+        l = QVBoxLayout()
+        l.setContentsMargins(15, 15, 15, 15)
         
-        icon_label = QLabel(icon)
-        icon_label.setStyleSheet("font-size: 24px;")
+        i = QLabel(icon)
+        i.setStyleSheet("font-size: 24px;")
         
-        title_label = QLabel(title)
-        title_label.setStyleSheet("font-size: 13px; color: #808090;")
+        t = QLabel(title)
+        t.setStyleSheet("font-size: 13px; color: #808090;")
         
-        value_label = QLabel(f"{value}")
-        value_label.setStyleSheet("font-size: 24px; font-weight: bold; color: #ffffff;")
+        v = QLabel(value)
+        v.setStyleSheet("font-size: 24px; font-weight: bold; color: white;")
         
-        unit_label = QLabel(unit)
-        unit_label.setStyleSheet("font-size: 12px; color: #606070;")
+        u = QLabel(unit)
+        u.setStyleSheet("font-size: 12px; color: #606070;")
         
-        layout.addWidget(icon_label)
-        layout.addWidget(title_label)
-        layout.addWidget(value_label)
-        layout.addWidget(unit_label)
+        l.addWidget(i)
+        l.addWidget(t)
+        l.addWidget(v)
+        l.addWidget(u)
         
-        card.setLayout(layout)
+        card.setLayout(l)
         return card
         
     def set_controller(self, controller):
-        """Set controller."""
         self.controller = controller
-        # Get username
         if hasattr(controller, 'current_user') and controller.current_user:
-            user = controller.current_user
+            u = controller.current_user.get('username', 'Admin')
         else:
-            user = {'username': 'Admin'}
-        username = user.get('full_name') or user.get('username', 'Admin')
-        self.user_label.setText(f"Kullanıcı: {username}")
+            u = 'Admin'
+        self.user_label.setText(f"Kullanıcı: {u}")
+    
+    # Button click handlers - each button has its own method
+    def btn1_clicked(self):
+        print("Anasayfa clicked")
         
-    def on_menu_clicked(self, menu_text):
-        """Handle menu button click."""
-        print(f"Menu clicked: {menu_text}")
-        # Add functionality here based on which menu was clicked
-        if menu_text == "Ayarlar":
-            if self.controller:
-                self.controller.logout()
-                
-    def apply_styles(self):
-        """Apply overall styles."""
-        self.setStyleSheet("""
-            QMainWindow {
-                background-color: #0a0a14;
-            }
-        """)
-
+    def btn2_clicked(self):
+        print("Yem Kütüphanesi clicked")
+        
+    def btn3_clicked(self):
+        print("Hayvan Grupları clicked")
+        
+    def btn4_clicked(self):
+        print("Rasyon Oluştur clicked")
+        
+    def btn5_clicked(self):
+        print("Optimizasyon clicked")
+        
+    def btn6_clicked(self):
+        print("Ekonomik Analiz clicked")
+        
+    def btn7_clicked(self):
+        print("Raporlar clicked")
+        
+    def btn8_clicked(self):
+        print("Ayarlar clicked - logging out")
+        if self.controller:
+            self.controller.logout()
