@@ -35,16 +35,7 @@ class AuthController:
         self.view.show()
         
     def login(self, username: str, password: str) -> bool:
-        """
-        Authenticate user.
-        
-        Args:
-            username: Username
-            password: Password
-            
-        Returns:
-            True if login successful
-        """
+        """Authenticate user."""
         logger.info(f"Login attempt for user: {username}")
         
         # Query user
@@ -57,9 +48,6 @@ class AuthController:
             return False
             
         user = result[0]
-        
-        # Debug: print stored hash
-        logger.info(f"Stored password hash: {user['password_hash']}")
         
         # Verify password
         if not verify_password(password, user['password_hash']):
@@ -79,26 +67,18 @@ class AuthController:
         
         # Close login and open dashboard
         self.view.close()
-        self.open_dashboard()
         
-        return True
-        
-    def open_dashboard(self):
-        """Open main dashboard after successful login."""
-        logger.info("Opening dashboard...")
-        
-        # Create and show dashboard directly (not through signal)
-        self.dashboard_view = DashboardView()
-        self.dashboard_view.set_controller(self)
-        self.dashboard_view.show()
+        # Create new dashboard instance
+        dashboard = DashboardView()
+        dashboard.set_controller(self)
+        dashboard.show()
         
         logger.info("Dashboard opened successfully")
         
+        return True
+        
     def logout(self):
         """Logout current user."""
-        if self.dashboard_view:
-            self.dashboard_view.close()
-            
         logger.info(f"User logged out: {self.current_user['username']}")
         self.current_user = None
         self.show()

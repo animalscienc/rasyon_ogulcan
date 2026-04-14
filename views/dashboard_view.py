@@ -155,6 +155,7 @@ class DashboardView(QMainWindow):
             btn = QPushButton(f"  {icon}  {text}")
             btn.setObjectName("menuButton")
             btn.setCheckable(True)
+            # Use default argument in lambda to capture current value
             btn.clicked.connect(lambda checked, id=item_id: self.menu_clicked(id))
             self.menu_buttons[item_id] = btn
             layout.addWidget(btn)
