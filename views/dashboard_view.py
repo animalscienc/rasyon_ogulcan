@@ -28,7 +28,13 @@ class DashboardView(QMainWindow):
     def set_controller(self, controller):
         """Set the controller for this view."""
         self.controller = controller
-        self.user_info_label.setText(f"Kullanıcı: {controller.user.get('full_name', controller.user.get('username', 'Admin'))}")
+        # Handle both AuthController and DashboardController
+        if hasattr(controller, 'current_user'):
+            user = controller.current_user
+        else:
+            user = controller.user
+        username = user.get('full_name') or user.get('username', 'Admin') if user else 'Admin'
+        self.user_info_label.setText(f"Kullanıcı: {username}")
         
     def setup_ui(self):
         """Setup UI components."""
