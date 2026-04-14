@@ -1,15 +1,14 @@
 # Authentication Controller for Zootekni Pro
 # Handles user login and session management
 
-from PyQt5.QtWidgets import QWidget, QMessageBox
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QMessageBox
 import os
 import sys
 
-# Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from views.login_view import LoginView
+from views.dashboard_view import DashboardView
 from utils.database import DatabaseManager
 from utils.auth import verify_password
 from utils.logger import setup_logger
@@ -20,15 +19,13 @@ logger = setup_logger(__name__)
 class AuthController:
     """Controller for authentication operations."""
     
-    # Signal emitted when login is successful
-    login_successful = pyqtSignal(dict)
-    
     def __init__(self):
         """Initialize authentication controller."""
         self.db = DatabaseManager()
         self.view = LoginView()
         self.view.set_controller(self)
         self.current_user = None
+        self.dashboard_view = None
         
         # Create default admin on first run
         self.db.create_default_admin()
@@ -61,6 +58,9 @@ class AuthController:
             
         user = result[0]
         
+        # Debug: print stored hash
+        logger.info(f"Stored password hash: {user['password_hash']}")
+        
         # Verify password
         if not verify_password(password, user['password_hash']):
             logger.warning(f"Login failed: Invalid password for {username}")
@@ -85,14 +85,20 @@ class AuthController:
         
     def open_dashboard(self):
         """Open main dashboard after successful login."""
-        from controllers.dashboard_controller import DashboardController
+        logger.info("Opening dashboard...")
         
-        dashboard = DashboardController(self.current_user)
-        dashboard.show()
-        self.login_successful.emit(self.current_user)
+        # Create and show dashboard directly (not through signal)
+        self.dashboard_view = DashboardView()
+        self.dashboard_view.set_controller(self)
+        self.dashboard_view.show()
+        
+        logger.info("Dashboard opened successfully")
         
     def logout(self):
         """Logout current user."""
+        if self.dashboard_view:
+            self.dashboard_view.close()
+            
         logger.info(f"User logged out: {self.current_user['username']}")
         self.current_user = None
         self.show()

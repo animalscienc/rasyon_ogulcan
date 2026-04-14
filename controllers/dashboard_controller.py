@@ -1,8 +1,7 @@
 # Dashboard Controller for Zootekni Pro
 # Main application controller with sidebar navigation
 
-from PyQt5.QtWidgets import QMainWindow, QMessageBox
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QMessageBox
 import os
 import sys
 
