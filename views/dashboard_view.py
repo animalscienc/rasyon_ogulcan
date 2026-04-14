@@ -104,6 +104,8 @@ class DashboardView(QMainWindow):
             btn = QPushButton(f"{icon}  {text}")
             btn.setFixedHeight(45)
             btn.setCursor(Qt.PointingHandCursor)
+            # Connect click event
+            btn.clicked.connect(lambda checked, t=text: self.on_menu_clicked(t))
             btn.setStyleSheet("""
                 QPushButton {
                     background-color: transparent;
@@ -314,6 +316,14 @@ class DashboardView(QMainWindow):
         username = user.get('full_name') or user.get('username', 'Admin')
         self.user_label.setText(f"Kullanıcı: {username}")
         
+    def on_menu_clicked(self, menu_text):
+        """Handle menu button click."""
+        print(f"Menu clicked: {menu_text}")
+        # Add functionality here based on which menu was clicked
+        if menu_text == "Ayarlar":
+            if self.controller:
+                self.controller.logout()
+                
     def apply_styles(self):
         """Apply overall styles."""
         self.setStyleSheet("""
