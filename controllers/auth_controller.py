@@ -1,5 +1,4 @@
 # Authentication Controller for Zootekni Pro
-# Handles user login and session management
 
 from PyQt5.QtWidgets import QMessageBox
 import os
@@ -22,37 +21,33 @@ class AuthController:
     def __init__(self):
         """Initialize authentication controller."""
         self.db = DatabaseManager()
-        self.view = LoginView()
-        self.view.set_controller(self)
-        self.current_user = None
+        self.login_view = LoginView()
+        self.login_view.set_controller(self)
         self.dashboard_view = None
-        
-        # Create default admin on first run
+        self.current_user = None
         self.db.create_default_admin()
         
-    def show(self):
+    def show_login(self):
         """Show login view."""
-        self.view.show()
+        self.login_view.show()
         
     def login(self, username: str, password: str) -> bool:
         """Authenticate user."""
-        logger.info(f"Login attempt for user: {username}")
+        logger.info(f"Login attempt: {username}")
         
-        # Query user
         query = "SELECT * FROM users WHERE username = ? AND is_active = 1"
         result = self.db.execute_query(query, (username,))
         
         if not result:
-            logger.warning(f"Login failed: User not found - {username}")
-            self.view.show_error("Kullanıcı adı veya şifre hatalı!")
+            logger.warning(f"User not found: {username}")
+            self.login_view.show_error("Kullanıcı adı veya şifre hatalı!")
             return False
             
         user = result[0]
         
-        # Verify password
         if not verify_password(password, user['password_hash']):
-            logger.warning(f"Login failed: Invalid password for {username}")
-            self.view.show_error("Kullanıcı adı veya şifre hatalı!")
+            logger.warning(f"Invalid password: {username}")
+            self.login_view.show_error("Kullanıcı adı veya şifre hatalı!")
             return False
             
         # Update last login
@@ -61,24 +56,23 @@ class AuthController:
             (user['id'],)
         )
         
-        # Store current user
         self.current_user = user
         logger.info(f"Login successful: {username}")
         
-        # Close login and open dashboard
-        self.view.close()
+        # Hide login (don't close!)
+        self.login_view.hide()
         
-        # Create new dashboard instance
-        dashboard = DashboardView()
-        dashboard.set_controller(self)
-        dashboard.show()
+        # Create and show dashboard
+        self.dashboard_view = DashboardView()
+        self.dashboard_view.set_controller(self)
+        self.dashboard_view.show()
         
-        logger.info("Dashboard opened successfully")
-        
+        logger.info("Dashboard shown")
         return True
         
     def logout(self):
-        """Logout current user."""
-        logger.info(f"User logged out: {self.current_user['username']}")
+        """Logout and show login again."""
+        if self.dashboard_view:
+            self.dashboard_view.close()
         self.current_user = None
-        self.show()
+        self.login_view.show()
