@@ -43,9 +43,9 @@ def main():
     
     # Create and show login
     login_controller = AuthController()
-    login_controller.show()
+    login_controller.view.show()
     
-    splash.finish(login_controller.window)
+    splash.finish(login_controller.view)
     
     result = app.exec_()
     logger.info("Application closed.")
