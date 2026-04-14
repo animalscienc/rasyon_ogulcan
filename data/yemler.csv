@@ -1,0 +1,41 @@
+feed_code,feed_name,feed_name_tr,category,dry_matter,cp,ndf,adf,starch,sugar,fat,ash,ca,p,mg,k,na,cl,s,n_el,ne_lact,me,rumen_degradable_protein,rumen_undegradable_protein,digestibility,ndf_digestibility,nPN,min_usage,max_usage,price,vegetation_period
+C001,Alfalfa Hay, Yonca Otu (Kuru),Forage,90,18,35,28,3,5,2.5,10,1.5,0.25,0.35,2.0,0.05,0.15,0.3,1.2,1.45,9.5,65,35,70,50,0,10,50,2.5,Between
+C002,Alfalfa Silage, Yonca Silajı,Forage,35,18,40,32,2,3,3,10,1.4,0.22,0.3,1.8,0.04,0.12,0.25,1.0,1.35,8.5,70,30,65,45,0,15,45,1.8,Between
+C003,Corn Silage,Mısır Silajı,Forage,30,8,45,25,28,2,2.5,7,0.3,0.22,0.2,1.2,0.02,0.08,0.2,1.15,1.4,9.0,55,45,72,55,0,20,60,1.2,Flowering
+C004,Wheat Straw,Buğday Sapı,Forage,88,4,70,45,2,3,1.5,6,0.4,0.08,0.1,0.8,0.05,0.1,0.1,0.4,0.9,6.0,30,70,45,35,0,0,30,0.3,Harvest
+C005,Barley Straw,Arpa Sapı,Forage,88,5,65,42,2,3,1.5,6,0.4,0.08,0.12,0.9,0.04,0.1,0.1,0.45,1.0,6.5,35,65,48,38,0,0,35,0.35,Harvest
+C006,Meadow Grass,Çayır Otu,Forage,85,10,55,30,2,4,2,8,0.5,0.2,0.25,1.5,0.05,0.15,0.2,0.9,1.25,8.0,55,45,60,45,0,5,40,1.5,Flowering
+C007,Clover Hay,Üçgül Otu,Forage,88,15,40,30,2,5,2,10,1.2,0.2,0.3,1.8,0.04,0.12,0.25,1.0,1.4,9.0,60,40,68,50,0,10,45,2.0,Flowering
+C008,Sorghum Silage,Sorgum Silajı,Forage,28,9,50,28,20,2,2,7,0.35,0.2,0.2,1.3,0.03,0.1,0.2,1.1,1.35,8.5,60,40,65,50,0,15,50,1.3,Flowering
+C009,Wheat Bran,Kepek (Buğday),Concentrate,88,15,35,10,25,4,4,6,0.12,0.6,0.4,1.2,0.03,0.05,0.2,0.7,1.65,12.0,50,50,75,60,0,20,30,1.8,N/A
+C010,Barley Tanede,Arpa (Taneli),Concentrate,88,11,18,6,55,2,2,2.5,0.08,0.35,0.12,0.5,0.01,0.05,0.15,0.75,1.65,12.5,55,45,82,70,0,40,50,2.0,N/A
+C011,Corn Grain (Whole),Mısır (Taneli),Concentrate,88,9,10,3,70,2,4,1.5,0.05,0.28,0.12,0.35,0.02,0.05,0.15,0.8,1.75,13.5,50,50,88,75,0,50,60,2.2,N/A
+C012,Wheat Grain,Buğday (Taneli),Concentrate,88,12,12,3,60,3,2,2,0.06,0.35,0.13,0.5,0.02,0.06,0.15,0.75,1.7,13.0,55,45,85,72,0,45,55,2.1,N/A
+C013,Oats,Yulaf,Concentrate,88,11,30,12,40,3,5,3,0.1,0.35,0.15,0.5,0.04,0.06,0.15,0.65,1.55,11.5,55,45,70,55,0,30,40,1.9,N/A
+C014,Soybean Meal,Soya Unu,Protein Supplement,88,48,15,5,5,8,2,6,0.3,0.65,0.28,2.0,0.02,0.03,0.35,0,2.05,14.5,75,25,90,80,0,25,35,4.5,N/A
+C015,Sunflower Meal,Ayçiçeği Unu,Protein Supplement,88,32,25,18,8,5,2,6,0.4,0.6,0.35,1.2,0.02,0.05,0.3,0,1.85,13.0,70,30,75,65,0,20,30,3.2,N/A
+C016,Cottonseed Meal,Pamuksu Unu,Protein Supplement,88,28,28,20,5,4,2,6,0.2,0.55,0.35,1.2,0.02,0.04,0.3,0,1.75,12.5,70,30,72,60,0,15,25,3.0,N/A
+C017,Canola Meal,Kanola Unu,Protein Supplement,88,36,20,12,8,6,3,6,0.65,0.65,0.25,1.1,0.02,0.04,0.3,0,1.9,13.5,72,28,78,68,0,20,30,3.4,N/A
+C018,Full Fat Soy,Soya (Tam Yağlı),Concentrate,88,36,12,4,10,8,18,5,0.25,0.55,0.25,1.8,0.02,0.03,0.3,0,2.15,15.0,70,30,92,78,0,15,25,4.2,N/A
+C019,Wheat Midds,Kepek (İleri),Concentrate,88,16,40,12,20,4,4.5,5,0.15,0.5,0.5,1.3,0.08,0.06,0.2,0.7,1.6,11.5,55,45,72,58,0,15,30,1.6,N/A
+C020,Corn Gluten Feed,Mısır Gluteni,Concentrate,88,20,30,12,15,5,3,8,0.08,0.45,0.35,0.8,0.02,0.06,0.3,0.8,1.7,12.0,65,35,78,65,0,20,35,2.0,N/A
+C021,Beet Pulp,Pancar Posası,Concentrate,88,9,45,22,5,10,1,4,0.6,0.1,0.25,0.1,0.05,0.5,0.15,0.6,1.45,10.0,55,45,80,65,5,20,40,1.4,N/A
+C022,Dried Beet Pulp,Kuru Pancar Posası,Concentrate,88,10,50,25,3,12,1,4,0.7,0.1,0.3,0.12,0.06,0.55,0.18,0.55,1.4,9.5,55,45,78,62,5,15,35,1.5,N/A
+C023,Molasses,Melas,Energy Supplement,75,3,0,0,55,50,0,10,0.8,0.1,0.3,3.0,0.2,0.3,0.3,0,1.9,12.0,0,0,95,90,0,5,15,1.2,N/A
+C024,Cane Molasses,Kamış Melası,Energy Supplement,75,3,0,0,50,45,0,8,0.7,0.08,0.25,2.5,0.15,0.25,0.25,0,1.85,11.5,0,0,92,88,0,5,15,1.1,N/A
+C025,Fat Powder (Vegetable),Bitkisel Yağ Tozu,Energy Supplement,95,0,0,0,0,0,95,0,0,0,0,0,0,0,0,0,2.6,22.0,0,0,98,98,0,2,5,8.0,N/A
+C026,Tallow (Animal),Hayvansal Yağ,Energy Supplement,95,0,0,0,0,0,95,0,0,0,0,0,0,0,0,0,2.5,21.0,0,0,98,98,0,1,3,7.5,N/A
+C027,Limestone,Kireçtaşı,Mineral Supplement,100,0,0,0,0,0,0,100,38,0.02,0,0,0,0,0,0,0,0,0,0,0,100,0,0,5,2.5,N/A
+C028,Dicalcium Phosphite,Dikalsiyum Fosfit,Mineral Supplement,100,0,0,0,0,0,0,80,24,18,0,0,0,0,0,0,0,0,0,0,100,0,0,2,3.5,N/A
+C029,Salt (NaCl),Tuz,Mineral Supplement,100,0,0,0,0,0,0,100,39,0,0,0,60,60,0,0,0,0,0,0,100,0,0,0,5,0.5,N/A
+C030,Magnesium Oxide,Magnezyum Oksit,Mineral Supplement,100,0,0,0,0,0,0,100,0,0,0,0,0,0,55,0,0,0,0,0,100,0,0,0,2,3.0,N/A
+C031,Trace Mineral Premix,İz Mineraller Karışımı,Mineral Supplement,95,0,0,0,0,0,2,30,15,5,3,5,2,3,2,0,0,0,0,0,100,0,0,1,2,8.0,N/A
+C032,Vitamin Premix,Vitamin Karışımı,Supplement,95,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,25.0,N/A
+C033,Biuret,Biüret,NPN Supplement,95,150,0,0,0,0,0,5,0,0,0,0,0,0,0,0,1.35,9.5,0,100,95,90,0,0,3,4.5,N/A
+C034,Urea,Üre,NPN Supplement,95,280,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3.2,N/A
+C035,DL-Methionine,DL-Metiyonin,Amino Acid,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.5,1,45.0,N/A
+C036,L-Lysine,L-Lizin,Amino Acid,98,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.5,1,35.0,N/A
+C037,Live Yeast,Canlı Maya,Probiotic,95,45,0,0,0,5,1,7,0.1,0.5,0.15,1.0,0.05,0.05,0.3,0,1.7,12.0,60,40,85,75,0,0.1,0.2,18.0,N/A
+C038,Buffered Propionate, tamponlu propiyonat,Mold Inhibitor,95,0,0,0,0,0,75,5,0,0,0,0,0,0,0,0,2.0,14.0,0,0,95,95,0,0.5,1,12.0,N/A
+C039,Rye Grain,Çavdar,Concentrate,88,10,15,4,58,3,1.5,2,0.06,0.3,0.12,0.55,0.02,0.05,0.15,0.7,1.65,12.0,55,45,82,70,0,35,45,1.8,N/A
+C040,Triticale,Tritikale,Concentrate,88,12,16,5,55,3,2,2.5,0.07,0.32,0.13,0.52,0.02,0.05,0.15,0.72,1.68,12.2,55,45,83,71,0,38,48,1.9,N/A
